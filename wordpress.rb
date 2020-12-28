@@ -1,14 +1,14 @@
 execute "update" do
   command "apt update -y"
 end
-package "apache2" do
-  action :install
+packages =['apache2','mysql-server', 'mysql-client', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql']
+  packages.each do |package|
+  apt_package package do
+    action :install
+  end 
 end
 service "apache2" do
   action :start
-end
-package %w(mysql-server mysql-client php libapache2-mod-php php-mcrypt php-mysql) do
-  action :install
 end
 execute "password" do
   command "mysqladmin -u root password rootpassword"
