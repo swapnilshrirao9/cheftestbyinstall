@@ -21,7 +21,7 @@ execute "rootpassword" do
   command "mysql -uroot -prootpassword < /tmp/mysqlcommands"
 end
 remote_file "wordpress" do
-    source 'https://wordpress.or/var/www/html/wordpress
+    source 'https://wordpress.org/latest.zip'
 end
 execute "unzip" do
  command "unzip /tmp/latest.zip -d /var/www/html"
