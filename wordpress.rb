@@ -17,8 +17,10 @@ remote_file "mysqlcommand" do
     source 'https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/mysqlcommands'
     path "/tmp/mysqlcommands"
 end
-execute "rootpassword" do
-  command "mysql -uroot -prootpassword < /tmp/mysqlcommands"
+  execute "mysql import" do
+	command "mysql -uroot -prootpassword < /tmp/mysqlcommands && touch /var/mysqlimportcomplete"
+	not_if {File.exists?("/var/mysqlimportcomplete")}
+ end
 end
 remote_file "wordpress" do
     source 'https://wordpress.org/latest.zip'
