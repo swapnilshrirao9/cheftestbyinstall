@@ -1,7 +1,7 @@
 execute "update" do
   command "apt update -y"
 end
-packages =['apache2','mysql-server', 'mysql-client', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql']
+packages =['apache2','mysql-server', 'mysql-client', 'php', 'libapache2-mod-php', 'php-mcrypt', 'php-mysql','unzip']
   packages.each do |package|
   apt_package package do
     action :install
@@ -21,7 +21,6 @@ end
 	command "mysql -uroot -prootpassword < /tmp/mysqlcommands && touch /var/mysqlimportcomplete"
 	not_if {File.exists?("/var/mysqlimportcomplete")}
  end
-end
 remote_file "wordpress" do
     source 'https://wordpress.org/latest.zip'
 	path "/tmp/latest.zip
