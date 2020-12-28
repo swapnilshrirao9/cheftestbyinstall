@@ -36,7 +36,7 @@ end
 execute "copy" do
  command "cp wp-config-sample.php /var/www/html/wordpress/wp-config.php"
 end
-file '/var/www/html/wordpress' do
+directory '/var/www/html/wordpress' do
   mode '0755'
   owner 'www-data'
   group 'www-data'
