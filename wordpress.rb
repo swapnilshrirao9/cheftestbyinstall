@@ -23,7 +23,7 @@ end
  end
 remote_file "wordpress" do
     source 'https://wordpress.org/latest.zip'
-	path "/tmp/latest.zip
+	path "/tmp/latest.zip" 
 end
 execute "unzip" do
  command "unzip /tmp/latest.zip -d /var/www/html"
