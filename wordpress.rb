@@ -31,6 +31,7 @@ execute "unzip" do
 end
 remote_file "php" do
     source 'https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php'
+	path "/var/www/html/wordpress/wp-config.php"
 end
 execute "copy" do
  command "cp wp-config-sample.php /var/www/html/wordpress/wp-config.php"
