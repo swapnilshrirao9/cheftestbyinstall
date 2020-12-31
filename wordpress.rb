@@ -25,9 +25,9 @@ remote_file "wordpress" do
     source 'https://wordpress.org/latest.zip'
 	path "/tmp/latest.zip" 
 end
-archive_file "latest.zip" do
-	path "/tmp/latest.zip"
-	dastionation "/var/www/html"
+execute " unzip the wordpress" do 
+	command "unzip /tmp/latest.zip -d /var/www/html "
+	not_if {File.exists? ("/var/www/html/wordpress/index.php")}
 end
 remote_file "php" do
     source 'https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php'
