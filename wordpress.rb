@@ -25,15 +25,13 @@ remote_file "wordpress" do
     source 'https://wordpress.org/latest.zip'
 	path "/tmp/latest.zip" 
 end
-execute "unzip" do
- command "unzip /tmp/latest.zip -d /var/www/html"
+archive_file "latest.zip" do
+	path "/tmp/latest.zip"
+	dastionation "/var/www/html"
 end
 remote_file "php" do
     source 'https://gitlab.com/roybhaskar9/devops/raw/master/coding/chef/chefwordpress/files/default/wp-config-sample.php'
 	path "/var/www/html/wordpress/wp-config.php"
-end
-execute "copy" do
- command "cp wp-config-sample.php /var/www/html/wordpress/wp-config.php"
 end
 directory '/var/www/html/wordpress' do
   mode '0755'
